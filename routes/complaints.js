@@ -12,12 +12,15 @@ const {
   showStats,
 } = require("../controllers/complaints");
 
-router.route("/").post(testUser, enrollComplaint).get(getAllComplaints);
-router.route("/stats").get(showStats);
+router
+  .route("/")
+  .post(cors(), testUser, enrollComplaint)
+  .get(cors(), getAllComplaints);
+router.route("/stats").get(cors(), showStats);
 
 router
   .route("/:id")
-  .get(getComplaint)
-  .delete(testUser, deleteComplaint)
-  .patch(testUser, updateComplaint);
+  .get(cors(), getComplaint)
+  .delete(cors(), testUser, deleteComplaint)
+  .patch(cors(), testUser, updateComplaint);
 module.exports = router;
