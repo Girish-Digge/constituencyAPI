@@ -22,9 +22,16 @@ const errorHandlerMiddleware = require("./middleware/error-handler");
 app.set("trust proxy", 1);
 
 // app.use(express.static(path.resolve(__dirname, "./client/dist")));
+app.use(
+  cors({
+    origin: "http://localhost:3000",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+    credentials: true,
+  })
+);
+app.options("*", cors());
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
 app.use(xss());
 
 // routes;
