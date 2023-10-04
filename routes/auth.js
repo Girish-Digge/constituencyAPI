@@ -15,7 +15,7 @@ const apiLimiter = rateLimiter({
 
 const { login, signUp, updateUser } = require("../controllers/auth");
 
-router.post("/signUp", cors(), apiLimiter, signUp);
-router.post("/login", cors(), apiLimiter, login);
+router.post("/signUp", apiLimiter, signUp);
+router.post("/login", apiLimiter, login);
 router.patch("/updateUser", authenticateUser, testUser, updateUser);
 module.exports = router;
